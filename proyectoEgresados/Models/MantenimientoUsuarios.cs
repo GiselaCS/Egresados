@@ -20,7 +20,7 @@ namespace proyectoEgresados.Models
         public int Alta(Usuarios usu)//Crea los elementos
         {
             conectar();
-            SqlCommand comando = new SqlCommand("insert into ESUsuarios (usu_id,usu_documento,usu_dipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro)values(@usu_id,@usu_documento,@usu_dipodoc,@usu_nombre,@usu_celular,@usu_email,@usu_genero,@usu_aprendiz,@usu_egresado,@usu_areaformacion,@usu_fechaegresado,@usu_direccion,@usu_barrio,@usu_ciudad,@usu_departamento,@usu_fecharegistro)", con);
+            SqlCommand comando = new SqlCommand("insert into ESUsuarios (usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro)values(@usu_id,@usu_documento,@usu_tipodoc,@usu_nombre,@usu_celular,@usu_email,@usu_genero,@usu_aprendiz,@usu_egresado,@usu_areaformacion,@usu_fechaegresado,@usu_direccion,@usu_barrio,@usu_ciudad,@usu_departamento,@usu_fecharegistro)", con);
 
             //es para especificar que tipo de dato es.
             comando.Parameters.Add("@usu_id", SqlDbType.Int);
@@ -65,6 +65,44 @@ namespace proyectoEgresados.Models
             return i;//retorna cuantas filas se afectaron 
 
         }
+        public List<Usuarios> RecuperarTodos()//nos trae lo que estan en la base de datos.
+        {
+            conectar();//abre la conexion.
+            List<Usuarios> usu = new List<Usuarios>();
+            SqlCommand com = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios order by usu_documento, asc", con);
+
+            con.Open();
+            SqlDataReader registros = com.ExecuteReader();
+            while (registros.Read())//muestra los registros por linea, uno por uno.
+            {
+                Usuarios dat = new Usuarios
+                {
+                    Id = int.Parse(registros["usu_id"].ToString()),
+                    Documento = int.Parse(registros["usu_documento"].ToString()),
+                    Tipodoc = registros["usu_tipodoc"].ToString(),
+                    Nombre = registros["usu_nombre"].ToString(),
+                    Celular = int.Parse(registros["usu_celular"].ToString()),
+                    Email = registros["usu_email"].ToString(),
+                    Genero = registros["usu_genero"].ToString(),
+                    Aprendiz = bool.Parse( registros["usu_aprendiz"].ToString()),
+                    Egresado = bool.Parse( registros["usu_egresado"].ToString()),
+                    Areaformacion = registros["usu_areaformacion"].ToString(),
+                    Fechaegresado = DateTime.Parse(registros["usu_fechaegresado"].ToString()),
+                    Direccion = registros["usu_direccion"].ToString(),
+                    Barrio = registros["usu_barrio"].ToString(),
+                    Ciudad = registros["usu_ciudad"].ToString(),
+                    Departamento = registros["usu_departamento"].ToString(),
+                    Fecharegistro = DateTime.Parse(registros["usu_fecharegistro"].ToString())
+                    
+                };
+                usu.Add(dat);
+
+
+            }
+            con.Close();
+            return usu;
+        }
+
 
 
     }
