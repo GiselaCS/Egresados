@@ -24,5 +24,6 @@ namespace proyectoEgresados.Models
         public string Ciudad { get; set; }
         public string Departamento { get; set; }
         public DateTime Fecharegistro { get; set; }
+        //comentario
     }
 }
