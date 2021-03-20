@@ -10,7 +10,7 @@ namespace proyectoEgresados.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
+        
         
         public int Documento { get; set; }
 
@@ -24,7 +24,7 @@ namespace proyectoEgresados.Models
         public int Celular { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un mail valido")]
+        [EmailAddress(ErrorMessage = "Debe ingresar un email valido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]

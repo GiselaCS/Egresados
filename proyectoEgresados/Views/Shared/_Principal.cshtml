@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
-<body>
-    <div>
+<body class="fst-italic">
+    <div class="container">
         @Html.ActionLink("Principal", "Index") |
         @Html.ActionLink("Crear nuevo", "Create") |
         <p>
-        @{Html.BeginForm();}
+            @{Html.BeginForm();}
 
-        Buscar @Html.TextBox("Documento")
-
-
-        <input type="submit" value="Aceptar" />
+            Buscar @Html.TextBox("Documento")
 
 
-        @{Html.EndForm();
-        }
+            <input type="submit" class="btn btn-primary" value="Aceptar" />
+
+
+            @{Html.EndForm();
+            }
         </p>
 
         @RenderBody()
-        
-        
+
+
     </div>
-    <footer>Gisela criollo © 2021 - Todos los derechos reservados</footer>
+    <br />
+    <br />
+    <div class="container"><h5 class="text-center">Gisela criollo © 2021 - Todos los derechos reservados</h5></div>
 </body>
 </html>
