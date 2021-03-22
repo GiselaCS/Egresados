@@ -107,9 +107,9 @@ namespace proyectoEgresados.Models
         public Usuarios Recuperardoc(int Documento)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_documento=@usu_documento", con);//consulta en la base de datos.
-            comando.Parameters.Add("@usu_documento", SqlDbType.Int);
-            comando.Parameters["@usu_documento"].Value = Documento;
+            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_documento=@documento", con);//consulta en la base de datos.
+            comando.Parameters.Add("@documento", SqlDbType.Int);
+            comando.Parameters["@documento"].Value = Documento;
             con.Open();
 
             SqlDataReader registros = comando.ExecuteReader();//trae cuantas lineas se guardo o afecto y ejecuta la sentencia.
@@ -119,11 +119,11 @@ namespace proyectoEgresados.Models
             {
                 //trae la informacion de la base de datos para pasarla al controlador y despues el controlador los envia a la vista.
 
-                usu.Id = int.Parse(registros["usu_id"].ToString());
-                usu.Documento = int.Parse(registros["usu_documento"].ToString());
+                usu.Id = Convert.ToInt32(registros["usu_id"]);
+                usu.Documento = Convert.ToInt32(registros["usu_documento"]);
                 usu.Tipodoc = registros["usu_tipodoc"].ToString();
                 usu.Nombre = registros["usu_nombre"].ToString();
-                usu.Celular = int.Parse(registros["usu_celular"].ToString());
+                usu.Celular = Convert.ToInt32(registros["usu_celular"]);
                 usu.Email = registros["usu_email"].ToString();
                 usu.Genero = registros["usu_genero"].ToString();
                 usu.Aprendiz = bool.Parse(registros["usu_aprendiz"].ToString());
@@ -135,6 +135,7 @@ namespace proyectoEgresados.Models
                 usu.Ciudad = registros["usu_ciudad"].ToString();
                 usu.Departamento = registros["usu_departamento"].ToString();
                 usu.Fecharegistro = DateTime.Parse(registros["usu_fecharegistro"].ToString());
+                
             }
             else
                 usu = null;
@@ -145,9 +146,9 @@ namespace proyectoEgresados.Models
         public Usuarios Recuperararea(string Area)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_areaformacion=@usu_areaformacion", con);//consulta en la base de datos.
-            comando.Parameters.Add("@usu_areaformacion", SqlDbType.VarChar);
-            comando.Parameters["@usu_areaformacion"].Value = Area;
+            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_areaformacion=@areaformacion", con);//consulta en la base de datos.
+            comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);
+            comando.Parameters["@areaformacion"].Value = Area;
             con.Open();
 
             SqlDataReader registros = comando.ExecuteReader();//trae cuantas lineas se guardo o afecto y ejecuta la sentencia.
@@ -183,9 +184,9 @@ namespace proyectoEgresados.Models
         public Usuarios Recuperargen(string genero)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_genero=@usu_genero", con);//consulta en la base de datos.
-            comando.Parameters.Add("@usu_genero", SqlDbType.VarChar);
-            comando.Parameters["@usu_genero"].Value = genero;
+            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_genero=@genero", con);//consulta en la base de datos.
+            comando.Parameters.Add("@genero", SqlDbType.VarChar);
+            comando.Parameters["@genero"].Value = genero;
             con.Open();
 
             SqlDataReader registros = comando.ExecuteReader();//trae cuantas lineas se guardo o afecto y ejecuta la sentencia.
@@ -221,52 +222,54 @@ namespace proyectoEgresados.Models
         public int Modificar(Usuarios usu)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@usu_tipodoc,usu_nombre=@usu_nombre,usu_celular=@usu_celular,usu_email=@usu_email,usu_genero=@usu_genero,usu_aprendiz=@usu_aprendiz,usu_egresado=@usu_egresado,usu_areaformacion=@usu_areaformacion,usu_fechaegresado=@usu_fechaegresado,usu_direccion=@usu_direccion,usu_barrio=@usu_barrio,usu_ciudad=@usu_ciudad,usu_departamento=@usu_departamento,usu_fecharegistro=@usu_fecharegistro  where usu_documento=@usu_documento", con);
+            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@tipodoc,usu_nombre=@nombre,usu_celular=@celular,usu_email=@email,usu_genero=@genero,usu_aprendiz=@aprendiz,usu_egresado=@egresado,usu_areaformacion=@areaformacion,usu_fechaegresado=@fechaegresado,usu_direccion=@direccion,usu_barrio=@barrio,usu_ciudad=@ciudad,usu_departamento=@departamento,usu_fecharegistro=@fecharegistro  where usu_documento=@documento", con);
 
             //Muestra la informacion
 
-            comando.Parameters.Add("@usu_tipodoc", SqlDbType.VarChar);
-            comando.Parameters["@usu_tipodoc"].Value = usu.Tipodoc;
+            comando.Parameters.Add("@tipodoc", SqlDbType.VarChar);
+            comando.Parameters["@tipodoc"].Value = usu.Tipodoc;
 
-            comando.Parameters.Add("@usu_nombre", SqlDbType.VarChar);
-            comando.Parameters["@usu_nombre"].Value = usu.Nombre;
+            comando.Parameters.Add("@nombre", SqlDbType.VarChar);
+            comando.Parameters["@nombre"].Value = usu.Nombre;
 
-            comando.Parameters.Add("@usu_celular", SqlDbType.Int);
-            comando.Parameters["@usu_celular"].Value = usu.Celular;
+            comando.Parameters.Add("@celular", SqlDbType.Int);
+            comando.Parameters["@celular"].Value = usu.Celular;
 
-            comando.Parameters.Add("@usu_email", SqlDbType.VarChar);
-            comando.Parameters["@usu_email"].Value = usu.Email;
+            comando.Parameters.Add("@email", SqlDbType.VarChar);
+            comando.Parameters["@email"].Value = usu.Email;
 
-            comando.Parameters.Add("@usu_genero", SqlDbType.VarChar);
-            comando.Parameters["@usu_genero"].Value = usu.Genero;
+            comando.Parameters.Add("@genero", SqlDbType.VarChar);
+            comando.Parameters["@genero"].Value = usu.Genero;
 
-            comando.Parameters.Add("@usu_aprendiz", SqlDbType.Bit);
-            comando.Parameters["@usu_aprendiz"].Value = usu.Aprendiz;
+            comando.Parameters.Add("@aprendiz", SqlDbType.Bit);
+            comando.Parameters["@aprendiz"].Value = usu.Aprendiz;
 
-            comando.Parameters.Add("@usu_egresado", SqlDbType.Bit);
-            comando.Parameters["@usu_egresado"].Value = usu.Egresado;
+            comando.Parameters.Add("@egresado", SqlDbType.Bit);
+            comando.Parameters["@egresado"].Value = usu.Egresado;
 
-            comando.Parameters.Add("@usu_areaformacion", SqlDbType.VarChar);
-            comando.Parameters["@usu_areaformacion"].Value = usu.Areaformacion;
+            comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);
+            comando.Parameters["@areaformacion"].Value = usu.Areaformacion;
 
-            comando.Parameters.Add("@usu_fechaegresado", SqlDbType.Date);
-            comando.Parameters["@usu_fechaegresado"].Value = usu.Fechaegresado;
+            comando.Parameters.Add("@fechaegresado", SqlDbType.Date);
+            comando.Parameters["@fechaegresado"].Value = usu.Fechaegresado;
 
-            comando.Parameters.Add("@usu_direccion", SqlDbType.VarChar);
-            comando.Parameters["@usu_direccion"].Value = usu.Fecharegistro;
+            comando.Parameters.Add("@direccion", SqlDbType.VarChar);
+            comando.Parameters["@direccion"].Value = usu.Fecharegistro;
 
-            comando.Parameters.Add("@usu_barrio ", SqlDbType.VarChar);
-            comando.Parameters["@usu_barrio "].Value = usu.Barrio;
+            comando.Parameters.Add("@barrio ", SqlDbType.VarChar);
+            comando.Parameters["@barrio "].Value = usu.Barrio;
 
-            comando.Parameters.Add("@usu_ciudad ", SqlDbType.VarChar);
-            comando.Parameters["@usu_ciudad "].Value = usu.Ciudad;
+            comando.Parameters.Add("@ciudad ", SqlDbType.VarChar);
+            comando.Parameters["@ciudad "].Value = usu.Ciudad;
 
-            comando.Parameters.Add("@usu_departamento", SqlDbType.VarChar);
-            comando.Parameters["@usu_departamento"].Value = usu.Departamento;
+            comando.Parameters.Add("@departamento", SqlDbType.VarChar);
+            comando.Parameters["@departamento"].Value = usu.Departamento;
 
-            comando.Parameters.Add("@usu_fecharegistro", SqlDbType.Date);
-            comando.Parameters["@usu_fecharegistro"].Value = usu.Fecharegistro;
+            comando.Parameters.Add("@fecharegistro", SqlDbType.Date);
+            comando.Parameters["@fecharegistro"].Value = usu.Fecharegistro;
 
+            comando.Parameters.Add("@documento", SqlDbType.Int);
+            comando.Parameters["@documento"].Value = usu.Documento;
 
 
             con.Open();
@@ -277,9 +280,9 @@ namespace proyectoEgresados.Models
         public int Borrar(int Documento)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("delete from ESUsuarios where usu_documento=@usu_documento", con);
-            comando.Parameters.Add("@usu_documento", SqlDbType.Int);
-            comando.Parameters["@usu_documento"].Value = Documento;
+            SqlCommand comando = new SqlCommand("delete from ESUsuarios where usu_documento=@documento", con);
+            comando.Parameters.Add("@documento", SqlDbType.Int);
+            comando.Parameters["@documento"].Value = Documento;
             con.Open();
             int i = comando.ExecuteNonQuery();
             con.Close();

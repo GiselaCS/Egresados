@@ -55,13 +55,54 @@ namespace proyectoEgresados.Controllers
             ma.Alta(usu);
             return RedirectToAction("Index");
         }
+        public ActionResult Delete(int id)
+        {
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios usu = ma.Recuperardoc(id);
+            return View(usu);
+        }
+
+        // POST: Home/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            ma.Borrar(id);
+            return RedirectToAction("Index");
+        }
         public ActionResult Edit(int id)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
-            Usuarios art = ma.Recuperardoc(id);
-            return View(art);
+            Usuarios usu = ma.Recuperardoc(id);
+            return View(usu);
         }
-        public ActionResult BuscarId(FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios usu = new Usuarios
+            {
+                Id = id,
+                //Documento= documento,
+                Documento = int.Parse(collection["documento"].ToString()),
+                Tipodoc = collection["tipodoc"].ToString(),
+                Nombre = collection["nombre"].ToString(),
+                Celular = int.Parse(collection["celular"].ToString()),
+                Email = collection["email"].ToString(),
+                Genero = collection["genero"].ToString(),
+                Aprendiz = bool.Parse(collection["aprendiz"].ToString()),
+                Egresado = bool.Parse(collection["egresado"].ToString()),
+                Areaformacion = collection["areaformacion"].ToString(),
+                Fechaegresado = DateTime.Parse(collection["fechaegresado"].ToString()),
+                Direccion = collection["direccion"].ToString(),
+                Barrio = collection["barrio"].ToString(),
+                Ciudad = collection["ciudad"].ToString(),
+                Departamento = collection["departamento"].ToString(),
+                Fecharegistro = DateTime.Parse(collection["fecharegistro"].ToString())
+            };
+            ma.Modificar(usu);
+            return RedirectToAction("Index");
+        }
+        /*public ActionResult BuscarId(FormCollection collection)
         {
             //MantenimientoUsuarios ma = new MantenimientoUsuarios();
             //return View(ma.Recuperardoc(Documento));
