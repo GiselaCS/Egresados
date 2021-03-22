@@ -18,6 +18,9 @@ namespace proyectoEgresados.Controllers
         }
         public ActionResult Details(int id)
         {
+            //MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            //Usuarios usu = ma.Recuperardoc(id);
+            //return View(usu);
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
             Usuarios usu = ma.Recuperardoc(id);
             return View(usu);
@@ -32,27 +35,55 @@ namespace proyectoEgresados.Controllers
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
             Usuarios usu = new Usuarios
             {
-                Documento = int.Parse(collection["usu_documento"].ToString()),
-                Tipodoc= collection["usu_tipodoc"].ToString(),
-                Nombre = collection["usu_nombre"].ToString(),
-                Celular = int.Parse(collection["usu_celular"].ToString()),
-                Email = collection["usu_email"].ToString(),
-                Genero = collection["usu_genero"].ToString(),
-                Aprendiz = bool.Parse(collection["usu_aprendiz"].ToString()),
-                Egresado = bool.Parse(collection["usu_egresado"].ToString()),
-                Areaformacion = collection["usu_areaformacion"].ToString(),
-                Fechaegresado= DateTime.Parse(collection["usu_fechaegresado"].ToString()),
-                Direccion = collection["usu_direccion"].ToString(),
-                Barrio = collection["usu_barrio"].ToString(),
-                Ciudad = collection["usu_ciudad"].ToString(),
-                Departamento = collection["usu_departamento"].ToString(),
-                Fecharegistro = DateTime.Parse(collection["usu_fecharegistro"].ToString())
-                
-
+               
+                Documento = int.Parse(collection["documento"]),
+                Tipodoc = collection["tipodoc"],
+                Nombre = collection["nombre"],
+                Celular = int.Parse(collection["celular"]),
+                Email = collection["email"],
+                Genero = collection["genero"],
+                //Aprendiz = bool.Parse(collection["aprendiz"].ToString()),
+                //Egresado = bool.Parse(collection["egresado"].ToString()),
+                Areaformacion = collection["areaformacion"],
+                Fechaegresado= DateTime.Parse(collection["fechaegresado"].ToString()),
+                Direccion = collection["direccion"],
+                Barrio = collection["barrio"],
+                Ciudad = collection["ciudad"],
+                Departamento = collection["departamento"],
+                Fecharegistro = DateTime.Parse(collection["fecharegistro"].ToString())
             };
             ma.Alta(usu);
             return RedirectToAction("Index");
         }
+        public ActionResult Edit(int id)
+        {
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios art = ma.Recuperardoc(id);
+            return View(art);
+        }
+        public ActionResult BuscarId(FormCollection collection)
+        {
+            //MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            //return View(ma.Recuperardoc(Documento));
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios dat = ma.Recuperardoc(int.Parse(collection["usu_documento"].ToString()));
+
+            if (dat != null)
+                return View("Details", dat);
+            else
+                return View("DatoNoExiste");
+        }
+        /*public ActionResult buscarid(FormCollection coleccion)
+        {
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios dat = ma.Recuperardoc(int.Parse(coleccion["usu_documento"].ToString()));
+
+            if (dat != null)
+                return View("Details", dat);
+            else
+                return View("DatoNoExiste");
+
+        }*/
 
 
     }

@@ -11,7 +11,6 @@ namespace proyectoEgresados.Models
         public int Id { get; set; }
 
         
-        
         public int Documento { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
@@ -38,7 +37,7 @@ namespace proyectoEgresados.Models
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Areaformacion { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
+        
         public DateTime Fechaegresado { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
@@ -53,7 +52,7 @@ namespace proyectoEgresados.Models
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Departamento { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
+       
         public DateTime Fecharegistro { get; set; }
         
     }
