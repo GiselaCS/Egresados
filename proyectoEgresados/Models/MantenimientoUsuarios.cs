@@ -104,12 +104,12 @@ namespace proyectoEgresados.Models
             return usu;
         }
 
-        public Usuarios Recuperardoc(int Documento)
+        public Usuarios Recuperardoc(int id)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_documento=@documento", con);//consulta en la base de datos.
-            comando.Parameters.Add("@documento", SqlDbType.Int);
-            comando.Parameters["@documento"].Value = Documento;
+            SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_id=@id", con);//consulta en la base de datos.
+            comando.Parameters.Add("@id", SqlDbType.Int);
+            comando.Parameters["@id"].Value = id;
             con.Open();
 
             SqlDataReader registros = comando.ExecuteReader();//trae cuantas lineas se guardo o afecto y ejecuta la sentencia.
@@ -222,7 +222,7 @@ namespace proyectoEgresados.Models
         public int Modificar(Usuarios usu)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@tipodoc,usu_nombre=@nombre,usu_celular=@celular,usu_email=@email,usu_genero=@genero,usu_aprendiz=@aprendiz,usu_egresado=@egresado,usu_areaformacion=@areaformacion,usu_fechaegresado=@fechaegresado,usu_direccion=@direccion,usu_barrio=@barrio,usu_ciudad=@ciudad,usu_departamento=@departamento,usu_fecharegistro=@fecharegistro  where usu_documento=@documento", con);
+            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@tipodoc,usu_nombre=@nombre,usu_celular=@celular,usu_email=@email,usu_genero=@genero,usu_aprendiz=@aprendiz,usu_egresado=@egresado,usu_areaformacion=@areaformacion,usu_fechaegresado=@fechaegresado,usu_direccion=@direccion,usu_barrio=@barrio,usu_ciudad=@ciudad,usu_departamento=@departamento,usu_fecharegistro=@fecharegistro  where usu_id=@id", con);
 
             //Muestra la informacion
 
@@ -271,6 +271,8 @@ namespace proyectoEgresados.Models
             comando.Parameters.Add("@documento", SqlDbType.Int);
             comando.Parameters["@documento"].Value = usu.Documento;
 
+            comando.Parameters.Add("@id", SqlDbType.Int);
+            comando.Parameters["@id"].Value = usu.Documento;
 
             con.Open();
             int i = comando.ExecuteNonQuery();
