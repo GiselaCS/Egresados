@@ -31,8 +31,8 @@ namespace proyectoEgresados.Models
             comando.Parameters.Add("@celular", SqlDbType.Int);
             comando.Parameters.Add("@email", SqlDbType.VarChar);
             comando.Parameters.Add("@genero", SqlDbType.VarChar);
-            comando.Parameters.Add("@aprendiz", SqlDbType.Bit);
-            comando.Parameters.Add("@egresado", SqlDbType.Bit);
+            comando.Parameters.Add("@aprendiz", SqlDbType.VarChar);
+            comando.Parameters.Add("@egresado", SqlDbType.VarChar);
             comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);
             comando.Parameters.Add("@fechaegresado", SqlDbType.Date);
             comando.Parameters.Add("@direccion", SqlDbType.VarChar);
@@ -54,7 +54,7 @@ namespace proyectoEgresados.Models
             comando.Parameters["@egresado"].Value = usu.Egresado;
             comando.Parameters["@areaformacion"].Value = usu.Areaformacion;
             comando.Parameters["@fechaegresado"].Value = usu.Fechaegresado;
-            comando.Parameters["@direccion"].Value = usu.Fecharegistro;
+            comando.Parameters["@direccion"].Value = usu.Direccion;
             comando.Parameters["@barrio "].Value = usu.Barrio;
             comando.Parameters["@ciudad "].Value = usu.Ciudad;
             comando.Parameters["@departamento"].Value = usu.Departamento;
@@ -85,8 +85,8 @@ namespace proyectoEgresados.Models
                     Celular = int.Parse(registros["usu_celular"].ToString()),
                     Email = registros["usu_email"].ToString(),
                     Genero = registros["usu_genero"].ToString(),
-                    Aprendiz = bool.Parse(registros["usu_aprendiz"].ToString()),
-                    Egresado = bool.Parse(registros["usu_egresado"].ToString()),
+                    Aprendiz = registros["usu_aprendiz"].ToString(),
+                    Egresado = registros["usu_egresado"].ToString(),
                     Areaformacion = registros["usu_areaformacion"].ToString(),
                     Fechaegresado = DateTime.Parse(registros["usu_fechaegresado"].ToString()),
                     Direccion = registros["usu_direccion"].ToString(),
@@ -126,8 +126,8 @@ namespace proyectoEgresados.Models
                 usu.Celular = Convert.ToInt32(registros["usu_celular"]);
                 usu.Email = registros["usu_email"].ToString();
                 usu.Genero = registros["usu_genero"].ToString();
-                usu.Aprendiz = bool.Parse(registros["usu_aprendiz"].ToString());
-                usu.Egresado = bool.Parse(registros["usu_egresado"].ToString());
+                usu.Aprendiz = registros["usu_aprendiz"].ToString();
+                usu.Egresado = registros["usu_egresado"].ToString();
                 usu.Areaformacion = registros["usu_areaformacion"].ToString();
                 usu.Fechaegresado = DateTime.Parse(registros["usu_fechaegresado"].ToString());
                 usu.Direccion = registros["usu_direccion"].ToString();
@@ -165,8 +165,8 @@ namespace proyectoEgresados.Models
                 usu.Celular = int.Parse(registros["usu_celular"].ToString());
                 usu.Email = registros["usu_email"].ToString();
                 usu.Genero = registros["usu_genero"].ToString();
-                usu.Aprendiz = bool.Parse(registros["usu_aprendiz"].ToString());
-                usu.Egresado = bool.Parse(registros["usu_egresado"].ToString());
+                usu.Aprendiz = registros["usu_aprendiz"].ToString();
+                usu.Egresado = registros["usu_egresado"].ToString();
                 usu.Areaformacion = registros["usu_areaformacion"].ToString();
                 usu.Fechaegresado = DateTime.Parse(registros["usu_fechaegresado"].ToString());
                 usu.Direccion = registros["usu_direccion"].ToString();
@@ -203,8 +203,8 @@ namespace proyectoEgresados.Models
                 usu.Celular = int.Parse(registros["usu_celular"].ToString());
                 usu.Email = registros["usu_email"].ToString();
                 usu.Genero = registros["usu_genero"].ToString();
-                usu.Aprendiz = bool.Parse(registros["usu_aprendiz"].ToString());
-                usu.Egresado = bool.Parse(registros["usu_egresado"].ToString());
+                usu.Aprendiz = registros["usu_aprendiz"].ToString();
+                usu.Egresado = registros["usu_egresado"].ToString();
                 usu.Areaformacion = registros["usu_areaformacion"].ToString();
                 usu.Fechaegresado = DateTime.Parse(registros["usu_fechaegresado"].ToString());
                 usu.Direccion = registros["usu_direccion"].ToString();
@@ -241,10 +241,10 @@ namespace proyectoEgresados.Models
             comando.Parameters.Add("@genero", SqlDbType.VarChar);
             comando.Parameters["@genero"].Value = usu.Genero;
 
-            comando.Parameters.Add("@aprendiz", SqlDbType.Bit);
+            comando.Parameters.Add("@aprendiz", SqlDbType.VarChar);
             comando.Parameters["@aprendiz"].Value = usu.Aprendiz;
 
-            comando.Parameters.Add("@egresado", SqlDbType.Bit);
+            comando.Parameters.Add("@egresado", SqlDbType.VarChar);
             comando.Parameters["@egresado"].Value = usu.Egresado;
 
             comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);

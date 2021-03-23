@@ -30,9 +30,9 @@ namespace proyectoEgresados.Models
         [RegularExpression("[MmFfOo]", ErrorMessage = "Solo puede ingresar una M o F")]
         public string Genero { get; set; }
 
-        public bool Aprendiz { get; set; }
+        public string Aprendiz { get; set; }
 
-        public bool Egresado { get; set; }
+        public string Egresado { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Areaformacion { get; set; }
