@@ -10,12 +10,14 @@ namespace proyectoEgresados.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        //funciona
         public ActionResult Index()
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
             return View(ma.RecuperarTodos());
             
         }
+        //funciona
         public ActionResult Details(int id)
         {
             //MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -30,6 +32,7 @@ namespace proyectoEgresados.Controllers
             return View();
         }
         [HttpPost]
+        //funciona
         public ActionResult Create(FormCollection collection)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -55,6 +58,7 @@ namespace proyectoEgresados.Controllers
             ma.Alta(usu);
             return RedirectToAction("Index");
         }
+        //funciona
         public ActionResult Delete(int id)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -70,12 +74,15 @@ namespace proyectoEgresados.Controllers
             ma.Borrar(id);
             return RedirectToAction("Index");
         }
+
+        //no funciona
         public ActionResult Edit(int id)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
             Usuarios usu = ma.Recuperardoc(id);
             return View(usu);
         }
+        [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -103,18 +110,26 @@ namespace proyectoEgresados.Controllers
             return RedirectToAction("Index");
         }
        
-        /*public ActionResult buscarid(FormCollection coleccion)
+        public ActionResult buscararea(FormCollection coleccion)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
-            Usuarios dat = ma.Recuperardoc(int.Parse(coleccion["usu_documento"].ToString()));
+            Usuarios dat = ma.Recuperararea(coleccion["areaformacion"].ToString());
 
             if (dat != null)
-                return View("Details", dat);
+                return View("Detallesarea", dat);
             else
                 return View("DatoNoExiste");
 
-        }*/
-
+        }
+        public ActionResult Detallesarea(string area)
+        {
+            //MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            //Usuarios usu = ma.Recuperardoc(id);
+            //return View(usu);
+            MantenimientoUsuarios ma = new MantenimientoUsuarios();
+            Usuarios usu = ma.Recuperararea(area);
+            return View(usu);
+        }
 
     }
 }

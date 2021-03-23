@@ -222,7 +222,7 @@ namespace proyectoEgresados.Models
         public int Modificar(Usuarios usu)
         {
             conectar();
-            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@tipodoc,usu_nombre=@nombre,usu_celular=@celular,usu_email=@email,usu_genero=@genero,usu_aprendiz=@aprendiz,usu_egresado=@egresado,usu_areaformacion=@areaformacion,usu_fechaegresado=@fechaegresado,usu_direccion=@direccion,usu_barrio=@barrio,usu_ciudad=@ciudad,usu_departamento=@departamento,usu_fecharegistro=@fecharegistro  where usu_id=@id", con);
+            SqlCommand comando = new SqlCommand("update ESUsuarios set usu_tipodoc=@tipodoc,usu_nombre=@nombre,usu_celular=@celular,usu_email=@email,usu_genero=@genero,usu_aprendiz=@aprendiz,usu_egresado=@egresado,usu_areaformacion=@areaformacion,usu_fechaegresado=@fechaegresado,usu_direccion=@direccion,usu_barrio=@barrio,usu_ciudad=@ciudad,usu_departamento=@departamento,usu_fecharegistro=@fecharegistro  where usu_documento=@documento", con);
 
             //Muestra la informacion
 

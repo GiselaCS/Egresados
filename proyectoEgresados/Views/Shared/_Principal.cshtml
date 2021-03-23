@@ -8,25 +8,30 @@
 </head>
 <body class="fst-italic">
     <div class="container">
-        @Html.ActionLink("Principal", "Index") |
-        @Html.ActionLink("Crear nuevo", "Create") |
-        <p>
-            @{Html.BeginForm("Details", "Home", FormMethod.Post);}
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">Egresados Sena</a>
+                <p> @Html.ActionLink("Principal", "Index") </p>
+                <p> @Html.ActionLink("Crear nuevo", "Create") </p>
+                <p>
+                    @{Html.BeginForm("Details", "Home", FormMethod.Post);}
+                    Buscar @Html.TextBox("Id")
 
-            Buscar @Html.TextBox("Id")
+                    <input type="submit" class="btn btn-primary" value="Aceptar" />
 
 
-            <input type="submit" class="btn btn-primary" value="Aceptar" />
+                    @{Html.EndForm();
+                    }
+                </p>
+            </div>
+        </nav>
 
-
-            @{Html.EndForm();
-            }
-        </p>
 
         @RenderBody()
 
 
     </div>
+    <br />
     <br />
     <br />
     <div class="container"><h5 class="text-center">Gisela criollo © 2021 - Todos los derechos reservados</h5></div>
