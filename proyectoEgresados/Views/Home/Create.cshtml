@@ -26,7 +26,8 @@
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Tipodoc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>Tipo documento</p>
+           
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Tipodoc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Tipodoc, "", new { @class = "text-danger" })
@@ -86,7 +87,8 @@
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Areaformacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>Area de formacion</p>
+            
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Areaformacion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Areaformacion, "", new { @class = "text-danger" })
@@ -94,7 +96,8 @@
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Fechaegresado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>fecha egresado</p>
+            
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fechaegresado, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fechaegresado, "", new { @class = "text-danger" })
@@ -134,7 +137,8 @@
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Fecharegistro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>Fecha registro</p>
+            
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fecharegistro, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fecharegistro, "", new { @class = "text-danger" })

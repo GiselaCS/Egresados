@@ -254,7 +254,7 @@ namespace proyectoEgresados.Models
             comando.Parameters["@fechaegresado"].Value = usu.Fechaegresado;
 
             comando.Parameters.Add("@direccion", SqlDbType.VarChar);
-            comando.Parameters["@direccion"].Value = usu.Fecharegistro;
+            comando.Parameters["@direccion"].Value = usu.Direccion;
 
             comando.Parameters.Add("@barrio ", SqlDbType.VarChar);
             comando.Parameters["@barrio "].Value = usu.Barrio;
@@ -271,8 +271,8 @@ namespace proyectoEgresados.Models
             comando.Parameters.Add("@documento", SqlDbType.Int);
             comando.Parameters["@documento"].Value = usu.Documento;
 
-            comando.Parameters.Add("@id", SqlDbType.Int);
-            comando.Parameters["@id"].Value = usu.Documento;
+            //comando.Parameters.Add("@id", SqlDbType.Int);
+            //comando.Parameters["@id"].Value = usu.Documento;
 
             con.Open();
             int i = comando.ExecuteNonQuery();

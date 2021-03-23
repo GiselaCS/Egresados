@@ -102,18 +102,7 @@ namespace proyectoEgresados.Controllers
             ma.Modificar(usu);
             return RedirectToAction("Index");
         }
-        /*public ActionResult BuscarId(FormCollection collection)
-        {
-            //MantenimientoUsuarios ma = new MantenimientoUsuarios();
-            //return View(ma.Recuperardoc(Documento));
-            MantenimientoUsuarios ma = new MantenimientoUsuarios();
-            Usuarios dat = ma.Recuperardoc(int.Parse(collection["usu_documento"].ToString()));
-
-            if (dat != null)
-                return View("Details", dat);
-            else
-                return View("DatoNoExiste");
-        }
+       
         /*public ActionResult buscarid(FormCollection coleccion)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
