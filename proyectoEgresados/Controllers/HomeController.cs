@@ -59,6 +59,22 @@ namespace proyectoEgresados.Controllers
             return RedirectToAction("Index");
         }
         //funciona
+        /* public ActionResult Delete(int id)
+         {
+             MantenimientoUsuarios ma = new MantenimientoUsuarios();
+             Usuarios usu = ma.Recuperardoc(id);
+             return View(usu);
+         }
+
+         // POST: Home/Delete/5
+         [HttpPost]
+         public ActionResult Delete(int id, FormCollection collection)
+         {
+             MantenimientoUsuarios ma = new MantenimientoUsuarios();
+             ma.Borrar(id);
+             return RedirectToAction("Index");
+         }*/
+        // GET: Home/Delete/5
         public ActionResult Delete(int id)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -73,9 +89,10 @@ namespace proyectoEgresados.Controllers
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
             ma.Borrar(id);
             return RedirectToAction("Index");
+
         }
 
-        //no funciona
+        //funciona
         public ActionResult Edit(int id)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
@@ -110,15 +127,16 @@ namespace proyectoEgresados.Controllers
             return RedirectToAction("Index");
         }
        
+        //no funciona
         public ActionResult buscararea(FormCollection coleccion)
         {
             MantenimientoUsuarios ma = new MantenimientoUsuarios();
-            Usuarios dat = ma.Recuperararea(coleccion["areaformacion"].ToString());
+            Usuarios dat = ma.Recuperararea(coleccion["usu_areaformacion"]);
 
             if (dat != null)
                 return View("Detallesarea", dat);
             else
-                return View("DatoNoExiste");
+                return View("NoExiste");
 
         }
         public ActionResult Detallesarea(string area)

@@ -13,6 +13,7 @@
                 <a class="navbar-brand">Egresados Sena</a>
                 <p> @Html.ActionLink("Principal", "Index") </p>
                 <p> @Html.ActionLink("Crear nuevo", "Create") </p>
+               
                 <p>
                     @{Html.BeginForm("Details", "Home", FormMethod.Post);}
                     Buscar @Html.TextBox("Id")
@@ -23,6 +24,7 @@
                     @{Html.EndForm();
                     }
                 </p>
+
             </div>
         </nav>
 

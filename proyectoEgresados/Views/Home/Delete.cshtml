@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+<br />
 <h2>Eliminar</h2>
-
-<h3>¿seguro quieres borrar este usuario?</h3>
+<br />
+<h3>¿Estas seguro de eliminar?</h3>
 <div>
-    <h4>Usuarios</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -137,8 +137,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-           
+            <input type="submit" value="Eliminar" class="btn btn-warning" /> 
         </div>
     }
 </div>

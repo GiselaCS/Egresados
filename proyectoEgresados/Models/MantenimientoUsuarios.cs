@@ -143,12 +143,12 @@ namespace proyectoEgresados.Models
             con.Close();
             return usu;
         }
-        public Usuarios Recuperararea(string Area)
+        public Usuarios Recuperararea(string Areaformacion)
         {
             conectar();
             SqlCommand comando = new SqlCommand("select usu_id,usu_documento,usu_tipodoc,usu_nombre,usu_celular,usu_email,usu_genero,usu_aprendiz,usu_egresado,usu_areaformacion,usu_fechaegresado,usu_direccion,usu_barrio,usu_ciudad,usu_departamento,usu_fecharegistro  from ESUsuarios where usu_areaformacion=@areaformacion", con);//consulta en la base de datos.
             comando.Parameters.Add("@areaformacion", SqlDbType.VarChar);
-            comando.Parameters["@areaformacion"].Value = Area;
+            comando.Parameters["@areaformacion"].Value = Areaformacion;
             con.Open();
 
             SqlDataReader registros = comando.ExecuteReader();//trae cuantas lineas se guardo o afecto y ejecuta la sentencia.
@@ -279,7 +279,7 @@ namespace proyectoEgresados.Models
             con.Close();
             return i;
         }
-        public int Borrar(int Documento)
+        /*public int Borrar(int Documento)
         {
             conectar();
             SqlCommand comando = new SqlCommand("delete from ESUsuarios where usu_documento=@documento", con);
@@ -292,6 +292,17 @@ namespace proyectoEgresados.Models
 
 
 
+        }*/
+        public int Borrar(int id)
+        {
+            conectar();
+            SqlCommand comando = new SqlCommand("delete from ESUsuarios where usu_id=@id", con);
+            comando.Parameters.Add("@id", SqlDbType.Int);
+            comando.Parameters["@id"].Value = id;
+            con.Open();
+            int i = comando.ExecuteNonQuery();
+            con.Close();
+            return i;
         }
     }
 }
